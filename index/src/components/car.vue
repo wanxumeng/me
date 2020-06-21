@@ -15,7 +15,7 @@
             }
         },
         created() {
-            this.$store.dispatch("getBanner")
+            this.$store.dispatch("getBanner",{keyWord:1})
         },
         methods:{
             click(){

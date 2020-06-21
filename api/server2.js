@@ -42,6 +42,33 @@ app.get("/liuyan",async(req,res)=>{
         tools.json(res)
     }
 });
+//个人信息
+app.get("/ruleForm",async(req,res)=>{
+    try{
+        const response = await db.getData(req,"ruleForm",{sort:{addTime:-1}})
+        res.json(response);
+    }catch(e){
+        tools.json(res)
+    }
+});
+//公司
+app.get("/workForm",async(req,res)=>{
+    try{
+        const response = await db.getData(req,"workForm",{sort:{addTime:-1}})
+        res.json(response);
+    }catch(e){
+        tools.json(res)
+    }
+});
+//项目
+app.get("/itemForm",async(req,res)=>{
+    try{
+        const response = await db.getData(req,"itemForm",{sort:{addTime:-1}})
+        res.json(response);
+    }catch(e){
+        tools.json(res)
+    }
+});
 app.listen(8080,()=>{
     console.log("success");
 })

@@ -2,11 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import admin from './admin'
 import imgText from './imgText'
+import liuyan from './liuyan'
 Vue.use(VueRouter)
 
 const routes = [
   ...admin,
-    ...imgText
+    ...imgText,
+    ...liuyan
 ]
 
 const router = new VueRouter({

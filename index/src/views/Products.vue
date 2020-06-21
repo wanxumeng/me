@@ -2,24 +2,18 @@
   <div class="productpage">
     <div class="title">
       <el-divider content-position="center">工作经历</el-divider>
-      <p><el-tag >某司</el-tag><el-tag>某某司</el-tag></p>
+      <p><el-tag v-for="item in $store.state.workForm" :key="item._id">{{item.gsm}}</el-tag></p>
     </div>
     <div class='experience'>
       <el-timeline>
-        <el-timeline-item timestamp="2010/07/-2014/10" placement="top">
+        <el-timeline-item v-for="item in $store.state.workForm" :key="item._id" :timestamp="item.date1|datas" placement="top">
           <el-card>
-            <h4>某司</h4>
+            <h4>{{item.gsm}}</h4>
             <p>
               主要负责某某产品、某某某产品的前端开发和部分后端功能开发<br>
               产品bug修复<br>
               产品前场问题反馈处理<br>
             </p>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2014/10-至今" placement="top">
-          <el-card>
-            <h4>xxx</h4>
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
           </el-card>
         </el-timeline-item>
       </el-timeline>
@@ -34,8 +28,14 @@ export default {
     return {
       direction: 'btt',
       currentIndex: 0,
+      timestamp:""
     }
   },
+  filters:{
+            datas(v){
+                return v.substring(0,10);
+            }
+        },
   methods: {
     handleClose (done) {
       done()
@@ -44,7 +44,10 @@ export default {
       this.drawer = true
       this.currentIndex = index - 1
     }
-  }
+  },
+ async mounted() {
+            await this.$store.dispatch("getworkForm");
+        },
 }
 </script>
 <style>

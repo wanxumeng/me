@@ -44,16 +44,17 @@
             <el-menu-item-group>
               <el-menu-item index="/imgmanage">图片管理列表</el-menu-item>
               <el-menu-item index="/textmessage">个人信息管理</el-menu-item>
+              <el-menu-item index="/work">工作经历</el-menu-item>
+              <el-menu-item index="/item">项目经验</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
               <i class="el-icon-goods"></i>
-              <span slot="title">商品管理</span>
+              <span slot="title">留言管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/goodsTypeList">商品类别列表</el-menu-item>
-              <el-menu-item index="/goodsList">商品列表</el-menu-item>
+              <el-menu-item index="/liuyan">留言列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

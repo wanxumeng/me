@@ -125,6 +125,66 @@ app.get("/ruleForm",async(req,res)=>{
         tools.json(res)
     }
 });
+//公司
+app.post("/workForm",async(req,res)=>{
+    try{
+       const {date1,date2,gsm,ms} = req.body;
+        await db.insertOne("workForm",{
+            date1,date2,gsm,ms,
+            addTime:Date.now()
+        });
+        tools.json(res,1,"成功")
+    }catch(e){
+        tools.json(res,-1,"失败")
+    }
+});
+app.get("/workForm",async(req,res)=>{
+    try{
+        const response = await db.getData(req,"workForm",{sort:{addTime:-1}})
+        res.json(response);
+    }catch(e){
+        tools.json(res)
+    }
+});
+//项目
+app.post("/itemForm",async(req,res)=>{
+    try{
+       const {xmm,xmjs,szgs,kfhj,zcms} = req.body;
+        await db.insertOne("itemForm",{
+            xmm,xmjs,szgs,kfhj,zcms,
+            addTime:Date.now()
+        });
+        tools.json(res,1,"成功")
+    }catch(e){
+        tools.json(res,-1,"失败")
+    }
+});
+app.get("/itemForm",async(req,res)=>{
+    try{
+        const response = await db.getData(req,"itemForm",{sort:{addTime:-1}})
+        res.json(response);
+    }catch(e){
+        tools.json(res)
+    }
+});
+//获取留言
+app.get("/liuyan",async(req,res)=>{
+    try{
+        const response = await db.getData(req,"liuyan",{sort:{addTime:-1}})
+        res.json(response);
+    }catch(e){
+        tools.json(res)
+    }
+});
+app.delete("/liuyan/:id",async(req,res)=>{
+    try{
+        const _id = req.params.id;
+        await db.deleteOneById("liuyan",_id);
+        tools.json(res,1,"成功");
+    }catch(err){
+        tools.json(res,2,"失败");
+    }
+});
 app.listen(8082,()=>{
     console.log("success");
 })

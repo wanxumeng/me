@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import admin from './admin'
 import imgText from './imgText'
+import liuyan from './liuyan'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -23,6 +24,7 @@ export default new Vuex.Store({
   },
   modules: {
     admin,
-    imgText
+    imgText,
+    liuyan
   }
 })

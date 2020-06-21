@@ -15,9 +15,9 @@
                     <div class="boxes default m-b-20">
                     <div class="box bg-gray-lightest p-t-0 p-b-0">
                         <div class="row">
-                        <div class="col-4 p-t-10 p-b-10">● 手机：18030842838</div>
-                        <div class="col-4 p-t-10 p-b-10 border">● Email：718352984@qq.com</div>
-                        <div class="col-4 p-t-10 p-b-10 border">● 网站：www.redspite.com</div>
+                        <div class="col-4 p-t-10 p-b-10">● 手机：{{$store.state.ruleForm.phone}}</div>
+                        <div class="col-4 p-t-10 p-b-10 border">● Email：{{$store.state.ruleForm.Email}}</div>
+                        <div class="col-4 p-t-10 p-b-10 border">● 网站：{{$store.state.ruleForm.website}}</div>
                         </div>
                     </div>
                     </div>
@@ -27,22 +27,22 @@
                     <div class="boxes default m-b-20">
                         <div class="box bg-gray-lightest p-t-0 p-b-0">
                             <div class="row">
-                                <div class="col-4 p-t-10 p-b-10">● 王旭萌 | 男 | 1997</div>
-                                <div class="col-4 p-t-10 p-b-10 border">● 专科 | 陕西职业技术学院 | 软件技术</div>
-                                <div class="col-4 p-t-10 p-b-10 border">● 前端开发 | 2 年工作经验</div>
+                                <div class="col-4 p-t-10 p-b-10">● {{$store.state.ruleForm.name}} | {{$store.state.ruleForm.radio | sex}}| {{$store.state.ruleForm.age}}</div>
+                                <div class="col-4 p-t-10 p-b-10 border">● {{$store.state.ruleForm.recode}} | {{$store.state.ruleForm.school}} | {{$store.state.ruleForm.zy}}</div>
+                                <div class="col-4 p-t-10 p-b-10 border">● {{$store.state.ruleForm.zgsc}} | {{$store.state.ruleForm.zw}}</div>
                             </div>
                             <div class="row">
-                                <div class="col-4 p-t-10 p-b-10">● 期望职位：Web高级前端</div>
-                                <div class="col-4 p-t-10 p-b-10 border">● 期望城市：西安</div>
+                                <div class="col-4 p-t-10 p-b-10">● 期望职位：{{$store.state.ruleForm.zw}}</div>
+                                <div class="col-4 p-t-10 p-b-10 border">● 期望城市：{{$store.state.ruleForm.cs}}</div>
                             </div>
                         </div>
                         <div class="box bg-gray-lightest">
                             ● Github：
-                            <a href="https://github.com/Redspitee" target="_blank">https://github.com/Redspitee</a>
+                            <a :href="$store.state.ruleForm.github" target="_blank">{{$store.state.ruleForm.github}}</a>
                         </div>
                         <div class="box bg-gray-lightest">
                             ● 个人网站：
-                            <a href="https://www.redspite.com" target="_blank">https://www.redspite.com</a>
+                            <a :href="'http://'+$store.state.ruleForm.website" target="_blank">{{$store.state.ruleForm.website}}</a>
                         </div>
                     </div>
                 </section>
@@ -51,15 +51,7 @@
                     <div class="boxes default m-b-20">
                         <div class="box bg-gray-lightest">
                             ●
-                            <a href="https://github.com/Redspitee/blog" target="_blank"> 个人博客 - 使用 React + Redux + Ts + Antd + Koa 构建的个人网站，个人简历、文章及留言版展示</a>
-                        </div>
-                        <div class="box bg-gray-lightest">
-                            ●
-                            <a href="https://github.com/Redspitee/react-go-top" target="_blank"> react-go-top - 基于react的回到顶部插件,发布在npm的插件包 </a>
-                        </div>
-                        <div class="box bg-gray-lightest">
-                            ●
-                            <a href="https://github.com/Redspitee/Cv" target="_blank"> 早期博客 - 纯静态页面,百度SEO排名较靠前</a>
+                            <a :href="$store.state.ruleForm.github" target="_blank"> 个人网站 - 使用  + vue + vuex + elementUI + axios 构建的个人网站，个人简历、文章及留言版展示</a>
                         </div>
                     </div>
                 </section>
@@ -77,9 +69,22 @@
         },
         data(){
             return {
-                url: '/api/'+"xjpic.jpg"
+                url: '/api/'+"xjpic.jpg",
+                 sexs:{1:"男",2:"女"},
             }
-        }
+        },
+        filters:{
+            sex(v){
+                if(v==="1"){
+                    return "男"
+                }else{
+                    return "女"
+                }
+            }
+        },
+         mounted() {
+            this.$store.dispatch("getForm");
+        },
     }
 </script>
 

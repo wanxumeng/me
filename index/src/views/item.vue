@@ -4,59 +4,45 @@
       <el-divider content-position="center">项目经验</el-divider>
     </div>
     <div class="project">
-      <div class="content" @click="drawerHander(1)" >
+      <div class="content" v-for="(item,i) in $store.state.banner" :key="item._id" @click="drawerHander(i)">
           <img src='../assets/logo.png' class='ifns'>
           <div class='hover'>
             <p>项目1</p>
           </div>
       </div>
-      <div class="content" @click="drawerHander(2)">
-        <img src='../assets/logo.png' class='ifns'>
-        <div class='hover'>
-        <p>项目2</p>
-        </div>
-      </div>
-      <div class="content" @click="drawerHander(3)">
-        <img src='../assets/logo.png' class='ifns'>
-        <div class='hover'>
-          <p>项目3</p>
-        </div>
-      </div>
     </div>
     <el-drawer
-      :title="projectInfo[currentIndex]['title']"
+      :title="detes.xmm"
       :visible.sync="drawer"
+      size="50%"
       :direction="direction"
       :before-close="handleClose">
         <p class='info'>
           <el-row>
             <el-col :span="24">
               <div class="grid-content bg-purple-dark">
-                项目介绍：{{projectInfo[currentIndex]['intro']}}
+                项目介绍：{{detes.xmjs}}
               </div>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="24">
               <div class="grid-content bg-purple-dark">
-                所在公司：{{projectInfo[currentIndex]['company']}}
+                所在公司：{{detes.szgs}}
               </div>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="24">
               <div class="grid-content bg-purple-dark">
-                开发环境：{{projectInfo[currentIndex]['developEnv']}}
+                开发环境：{{detes.kfhj}}
               </div>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="24">
               <div class="grid-content bg-purple-dark">
-                职责描述:
-              </div>
-              <div class="grid-content bg-purple-dark" v-for="(item,key) in projectInfo[currentIndex]['responsibility']" :key="key">
-                {{projectInfo[currentIndex]['responsibility'][key]}}
+                职责描述:{{detes.zcms}}
               </div>
             </el-col>
           </el-row>
@@ -73,50 +59,22 @@ export default {
       drawer: false,
       direction: 'btt',
       currentIndex: 0,
-      projectInfo: [
-        {
-          title: '项目1',
-          intro: '这里是项目介绍',
-          company: '某司',
-          developEnv: '这里是开发环境介绍',
-          responsibility: {
-            res1: '职责1',
-            res2: '职责2',
-            res3: '职责3'
-          }
-        }, {
-          title: '项目2',
-          intro: '这里是项目2介绍',
-          company: '某司',
-          developEnv: '这里是开发环境介绍',
-          responsibility: {
-            res1: '职责1',
-            res2: '职责2',
-            res3: '职责3'
-          }
-        }, {
-          title: '项目3',
-          intro: '这里是项目3介绍',
-          company: '某司',
-          developEnv: '这里是开发环境介绍',
-          responsibility: {
-            res1: '职责1',
-            res2: '职责2',
-            res3: '职责3'
-          }
-        }
-      ]
+      detes:{}
     }
   },
   methods: {
     handleClose (done) {
       done()
     },
-    drawerHander (index) {
+     async drawerHander (index) {
       this.drawer = true
-      this.currentIndex = index - 1
+      await this.$store.dispatch("getitemForm");
+      this.detes = this.$store.state.itemForm[index]
     }
-  }
+  },
+  created() {
+    this.$store.dispatch("getBanner",{keyWord:2})
+  }, 
 }
 </script>
 <style>
@@ -136,7 +94,7 @@ export default {
     border-bottom: 1px solid;
   }
   div .el-drawer{
-    background-color: rgb(61, 67, 72);
+    background-color: #fff;
     color: #ccc;
   }
   div .el-drawer__body{
@@ -144,6 +102,9 @@ export default {
   }
 </style>
 <style scoped>
+    .el-drawer.btt{
+      height: 50%;
+    }
   .productpage{
     padding: 0px 100px 0px 100px;
   }
