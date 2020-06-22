@@ -6,6 +6,7 @@
                 <el-select  ref="imgType" v-model="imgInfo.imgType" placeholder="请选择图片类型">
                     <el-option label="轮播图" value="1"></el-option>
                     <el-option label="项目图片" value="2"></el-option>
+                    <el-option label="头象" value="3"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="图片 :" label-width="110px">

@@ -5,7 +5,9 @@
             <template>
                 <div class="demo-fit" style="margin:auto,width:200px">
                     <div class="block">
-                        <el-avatar shape="square"  fit="cover" :src="url"></el-avatar>
+                        <el-avatar shape="square"  fit="cover" >
+                            <img :src="'/api/'+$store.state.heads.shopTypePic" alt="">
+                        </el-avatar>
                     </div>
                 </div>
             </template>
@@ -69,7 +71,6 @@
         },
         data(){
             return {
-                url: '/api/'+"xjpic.jpg",
                  sexs:{1:"男",2:"女"},
             }
         },
@@ -84,6 +85,12 @@
         },
          mounted() {
             this.$store.dispatch("getForm");
+        },
+        created() {
+            
+        },
+        beforeCreate() {
+            this.$store.dispatch("gethead",{keyWord:3});
         },
     }
 </script>

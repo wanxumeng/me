@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     banner:[],
+    heads:{},
     //留言内容
     contentList:[],
     pageIndex:1,
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     //轮播图
     CHANGE_BANNER(state,banner){
       state.banner = banner
+    },
+    CHANGE_HEAD(state,heads){
+      state.heads = heads[0]
     },
     CONTENT_LIST(state,content){
       state.contentList = content.liuyan,
@@ -50,6 +54,19 @@ CHANGE_ITEMFORM(state,itemForm){
         commit("CHANGE_BANNER",data.imgList);
       }else alert("获取失败");
   },
+  async gethead({commit},{pageIndex=1,limit=8,keyWord=''}={}){
+    const {data} = await axios.get("/api/imgList",{
+        params:{
+            pageIndex,
+            limit,
+            keyWord
+        }
+    });
+    if(data.ok === 1){
+      commit("CHANGE_HEAD",data.imgList);
+      console.log(data.imgList[0])
+    }else alert("获取失败");
+},
   //获取个人信息
   async getForm({commit},{pageIndex=1,limit=8,keyWord=''}={}){
     const {data} = await axios.get("/api/ruleForm");

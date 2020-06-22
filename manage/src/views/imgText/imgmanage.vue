@@ -99,6 +99,9 @@
         watch:{
         },
         methods: {
+            open(_id){
+                this.$store.dispatch("deleteImg",_id);
+            }
         },
     };
 </script>

@@ -3,7 +3,8 @@ const state = {
     imgList:[],
     imgTypeNum:{
         1:"轮播图",
-        2:"项目图片"
+        2:"项目图片",
+        3:"头像"
     },
     ruleForm:{},
     workForm:[],
@@ -35,6 +36,15 @@ const actions = {
         if(data.ok === 1){
             commit("CHANGE_IMG_LIST",data.imgList);
         }else alert("获取失败");
+    },
+    //删除图片
+    async deleteImg(context,_id){
+        const data = await axios.delete("/imgList/"+_id);
+        if(data.ok === 1){
+            context.dispatch("getImgList",{pageIndex:context.rootState.pageIndex,limit:8});
+        }else{
+            alert(data.删除失败);
+        }
     },
     async addForm({commit},vm){
         const data = await axios.post("/ruleForm",vm.ruleForm);
@@ -73,6 +83,15 @@ const actions = {
             commit("CHANGE_WORKFORM",data.workForm)
         }else alert("获取失败");
     },
+    //删除公司
+    async deleteWork(context,_id){
+        const data = await axios.delete("/workForm/"+_id);
+        if(data.ok === 1){
+            context.dispatch("getworkForm",{pageIndex:context.rootState.pageIndex,limit:8});
+        }else{
+            alert(data.删除失败);
+        }
+    },
     //项目
     async additemForm({commit},vm){
         const data = await axios.post("/itemForm",vm.itemForm);
@@ -91,6 +110,15 @@ const actions = {
         if(data.ok === 1){
             commit("CHANGE_ITEMFORM",data.itemForm);
         }else alert("获取失败");
+    },
+    //删除项目
+    async deleteItem(context,_id){
+        const data = await axios.delete("/itemForm/"+_id);
+        if(data.ok === 1){
+            context.dispatch("getitemForm",{pageIndex:context.rootState.pageIndex,limit:8});
+        }else{
+            alert(data.删除失败);
+        }
     },
 }
 

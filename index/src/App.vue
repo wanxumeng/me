@@ -3,7 +3,7 @@
         <el-container>
         <el-header>
             <el-row>
-                <el-col :span="20" :push="2">
+                <el-col :xs="20" :span="20" :push="2">
                     <el-menu
                             type="flex"
                             :router="true"

@@ -90,6 +90,9 @@
         watch:{
         },
         methods: {
+            open(_id){
+                this.$store.dispatch("deleteWork",_id);
+            }
         },
     };
 </script>

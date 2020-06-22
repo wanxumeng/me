@@ -103,6 +103,15 @@ app.get("/imgList",async(req,res)=>{
         tools.json(res)
     }
 });
+app.delete("/imgList/:id",async(req,res)=>{
+    try{
+        const _id = req.params.id;
+        await db.deleteOneById("imgList",_id);
+        tools.json(res,1,"成功");
+    }catch(err){
+        tools.json(res,2,"失败");
+    }
+});
 //修改信息
 app.post("/ruleForm",async(req,res)=>{
     try{
@@ -146,6 +155,15 @@ app.get("/workForm",async(req,res)=>{
         tools.json(res)
     }
 });
+app.delete("/workForm/:id",async(req,res)=>{
+    try{
+        const _id = req.params.id;
+        await db.deleteOneById("workForm",_id);
+        tools.json(res,1,"成功");
+    }catch(err){
+        tools.json(res,2,"失败");
+    }
+});
 //项目
 app.post("/itemForm",async(req,res)=>{
     try{
@@ -165,6 +183,15 @@ app.get("/itemForm",async(req,res)=>{
         res.json(response);
     }catch(e){
         tools.json(res)
+    }
+});
+app.delete("/itemForm/:id",async(req,res)=>{
+    try{
+        const _id = req.params.id;
+        await db.deleteOneById("itemForm",_id);
+        tools.json(res,1,"成功");
+    }catch(err){
+        tools.json(res,2,"失败");
     }
 });
 //获取留言

@@ -10,9 +10,7 @@
           <el-card>
             <h4>{{item.gsm}}</h4>
             <p>
-              主要负责某某产品、某某某产品的前端开发和部分后端功能开发<br>
-              产品bug修复<br>
-              产品前场问题反馈处理<br>
+              {{item.ms}}
             </p>
           </el-card>
         </el-timeline-item>

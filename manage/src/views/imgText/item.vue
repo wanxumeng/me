@@ -93,6 +93,9 @@
         watch:{
         },
         methods: {
+            open(_id){
+                this.$store.dispatch("deleteItem",_id);
+            }
         },
         mounted() {
             this.$store.dispatch("getitemForm",{pageIndex:1,limit:8});
